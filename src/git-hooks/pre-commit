@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+	# get the list of changed files
+	staged_files=$(git diff --name-only --cached)
+	# command to fix files
+	ABSOLUTE_PATH="$(git rev-parse --show-toplevel)"
+
+	cmd='vendor/bin/php-cs-fixer fix %s -q'
+	if [ -f ${ABSOLUTE_PATH}/'.php_cs_fixer_rules.php' ]; then
+		cmd='vendor/bin/php-cs-fixer fix %s -q --config=${ABSOLUTE_PATH}/'.php_cs_fixer_rules.php''
+	fi
+	for staged in ${staged_files}; do #
+		# work only with existing files
+		conf="${ABSOLUTE_PATH}/"${staged}
+        if [[ -f ${conf} && ${conf} == *.php ]]; then #
+                eval '$(printf "$cmd" "$conf")' # use php-cs-fixer to correct the file
+                $(git add "$conf") # changes addition into the commit
+        fi
+	done
+	exit 0 # do commit

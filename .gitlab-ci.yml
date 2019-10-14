@@ -1,0 +1,19 @@
+stages:
+- deploy
+
+before_script:
+- mkdir -p ~/.ssh
+- chmod 700 ~/.ssh
+- echo "$DEPLOY_KEY" > ~/.ssh/id_rsa
+- chmod 700 ~/.ssh/id_rsa
+- which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )
+- eval $(ssh-agent -s)
+- ssh-add ~/.ssh/id_rsa
+- echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+- chmod 644 ~/.ssh/known_hosts
+
+deploy_dev:
+  stage: deploy
+  only:
+  - dev
+  script:
