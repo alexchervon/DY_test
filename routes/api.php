@@ -16,10 +16,6 @@ use Illuminate\Http\Request;
 //API version 1
 Route::group(['prefix' => 'v1'], function () {
 
-    //Auth required routes
-    Route::group(['middleware' => 'auth.jwt'], function () {
-
-
-    });
-
+    Route::post('project/{id}/article', 'FavoriteProductAPIController@store');
+    Route::get('test', 'ProjectAPIController@storeArticle');
 });
