@@ -1,11 +1,9 @@
-#### В проект включено:
-- intervention/image - для работы с картинками
-- sentry/sentry-laravel - баг трекер
-- appointer/swaggervel - генерация сваггер документации
-- barryvdh/laravel-debugbar - дебаг бар
-- infyomlabs - админка, с полным генератором
-- tymon/jwt-auth - jwt токены
+### Инструкция
 
-Работа с базой происходит через репозитории. Админка генерирует контроллеры, репозитории, реквесты.
+1. настроить файл окружение .env, прописать доступы к БД
+2. composer install
+3. php artisan key:generate
+4. php artisan migrate
+5. php artisan db:seed
 
-*code style - в разработке*
+

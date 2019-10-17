@@ -10,17 +10,11 @@ class ProjectHasContent extends Model
     public $timestamps = false;
     public $fillable = [
         'project_id',
-        'parent_id',
-        'morph'
+        'parent_id'
     ];
 
-    public function content()
+    public function project()
     {
         return $this->morphTo();
-    }
-
-    public function setProject(Project $project)
-    {
-        $this->project_id = $project->getId();
     }
 }

@@ -15,8 +15,8 @@ class CreateProjectHasContentTable extends Migration
     {
         Schema::create('project_has_content', function (Blueprint $table) {
             $table->integer('id',true);
-            $table->string('project_id');
-            $table->morphs('morph');
+            $table->integer('entity_id');
+            $table->morphs('project');
         });
     }
 

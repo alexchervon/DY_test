@@ -15,18 +15,13 @@ class Project extends Model
         'description',
     ];
 
-    public function content()
+    public function articles()
     {
-        return $this->morphMany(ProjectHasContent::class, 'morph');
+        return $this->morphedByMany(ProjectArticle::class, 'project','project_has_content','project_id','entity_id');
     }
 
-    public function article()
+    public function users()
     {
-        return $this->morphMany(ProjectArticle::class, 'morph');
-    }
-
-    public function getId()
-    {
-        return $this->id;
+        return $this->morphedByMany(ProjectUser::class, 'project','project_has_content','project_id','entity_id');
     }
 }

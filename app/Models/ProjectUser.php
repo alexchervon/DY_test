@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 
-class ProjectUser extends Model
+class ProjectUser extends Model implements HasMedia
 {
+    use HasMediaTrait;
+
     public $table = 'project_user';
 
     public $timestamps = false;
@@ -15,8 +19,4 @@ class ProjectUser extends Model
         'first_name',
     ];
 
-    public function project()
-    {
-        return $this->morphMany(ProjectHasContent::class, 'morph');
-    }
 }

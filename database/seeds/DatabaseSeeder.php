@@ -12,5 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        if (DB::table('project')->get()->count() == 0) {
+            DB::table('project')->insert([
+                [
+                    'title' => 'Проект 1',
+                    'description' => 'Описание проекта',
+                ],
+            ]);
+        }
     }
 }
